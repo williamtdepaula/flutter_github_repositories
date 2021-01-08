@@ -20,9 +20,10 @@ main() {
     test('return a list of repositories from github', () async {
       when(gitHubDatasourceMock.getGitHubRepositories()).thenAnswer(
         (_) async => Response(
-          data: jsonDecode(
-              '[{"name": "repositório", "html_url": "linkrepo.com", "owner": { "login": "william", "avatar_url": "link.com" }}]'),
           statusCode: 200,
+          data: jsonDecode(
+            '[{"name": "repositório", "html_url": "linkrepo.com", "owner": { "login": "william", "avatar_url": "link.com" }}]',
+          ),
         ),
       );
 
@@ -36,8 +37,8 @@ main() {
         () async {
       when(gitHubDatasourceMock.getGitHubRepositories()).thenAnswer(
         (_) async => Response(
-          data: jsonDecode(''),
           statusCode: 304,
+          data: jsonDecode(''),
         ),
       );
 
