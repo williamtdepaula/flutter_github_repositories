@@ -14,7 +14,7 @@ abstract class _HomeControllerBase with Store {
   IGitHubRepository gitHubRepository;
 
   _HomeControllerBase({this.gitHubRepository}) {
-    this.loadGitHubRepositories();
+    //this.loadGitHubRepositories();
   }
 
   @observable

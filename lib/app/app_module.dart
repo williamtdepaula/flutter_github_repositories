@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_github_repositories/app/modules/home/infra/datasource/github_datasource_external.dart';
-import 'package:flutter_github_repositories/app/modules/home/infra/repositories/github_repository.dart';
 import 'package:flutter_github_repositories/app/shared/utils/constants.dart';
 
-import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_github_repositories/app/app_widget.dart';
