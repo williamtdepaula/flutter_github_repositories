@@ -37,7 +37,7 @@ void main() {
       ),
     );
 
-    await homeController.loadGitHubRepositories();
+    await homeController.loadGitHubRepositories(false);
 
     expect(homeController.gitHubRepositories.isNotEmpty, true);
     expect(homeController.warning == null, true);
@@ -50,7 +50,7 @@ void main() {
       (_) async => Exception(),
     );
 
-    await homeController.loadGitHubRepositories();
+    await homeController.loadGitHubRepositories(false);
 
     expect(homeController.gitHubRepositories.isEmpty, true);
     expect(homeController.warning != null, true);

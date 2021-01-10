@@ -7,6 +7,7 @@ import 'package:flutter_github_repositories/app/modules/home/infra/repositories/
 import 'package:flutter_github_repositories/app/modules/home/models/github_repo.dart';
 import 'package:flutter_github_repositories/app/modules/home/models/owner.dart';
 import 'package:flutter_github_repositories/app/shared/errors/errors.dart';
+import 'package:flutter_github_repositories/app/shared/utils/helper.dart';
 
 class GitHubRepository implements IGitHubRepository {
   IGitHubDatasource gitHubDataSource;
@@ -17,32 +18,36 @@ class GitHubRepository implements IGitHubRepository {
   Future<Either<FailureGitHub, List<GitHubRepo>>>
       getGitHubRepositories() async {
     try {
-      Response resRepositories = await gitHubDataSource.getGitHubRepositories();
-      print('testeee ${resRepositories.statusCode}');
+      bool appIsConnected = await Helper.isConnected();
 
-      if (resRepositories.statusCode == 200) {
-        List<GitHubRepo> gitHubRepositories = [];
+      if (appIsConnected) {
+        Response resRepositories =
+            await gitHubDataSource.getGitHubRepositories();
 
-        resRepositories.data.forEach((value) {
-          Owner ownerRepo = new Owner(
-              login: value['owner']['login'],
-              avatarUrl: value['owner']['avatar_url']);
+        if (resRepositories.statusCode == 200) {
+          List<GitHubRepo> gitHubRepositories = [];
 
-          GitHubRepo gitHubRepo = new GitHubRepo(
-            name: value['name'],
-            htmlUrl: value['html_url'],
-            owner: ownerRepo,
-          );
+          resRepositories.data.forEach((value) {
+            Owner ownerRepo = new Owner(
+                login: value['owner']['login'],
+                avatarUrl: value['owner']['avatar_url']);
 
-          gitHubRepositories.add(gitHubRepo);
-        });
+            GitHubRepo gitHubRepo = new GitHubRepo(
+              name: value['name'],
+              htmlUrl: value['html_url'],
+              owner: ownerRepo,
+            );
 
-        return Right(gitHubRepositories);
+            gitHubRepositories.add(gitHubRepo);
+          });
+
+          return Right(gitHubRepositories);
+        } else
+          return Left(ConnectionError());
       } else {
         return Left(GitHubRepoError());
       }
     } catch (e) {
-      print('im here');
       return Left(GitHubRepoError());
     }
   }

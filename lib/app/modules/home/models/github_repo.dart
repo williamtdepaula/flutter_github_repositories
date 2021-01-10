@@ -6,4 +6,9 @@ class GitHubRepo {
   Owner owner;
 
   GitHubRepo({this.name, this.htmlUrl, this.owner});
+
+  //Para evitar que na view fique muito extenso para selecionar a propriedade
+  get getOwnerName => this.owner.login;
+
+  get getOwnerAvatarUrl => this.owner.avatarUrl;
 }

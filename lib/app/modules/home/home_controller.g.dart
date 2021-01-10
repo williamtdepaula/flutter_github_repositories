@@ -69,9 +69,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
       AsyncAction('_HomeControllerBase.loadGitHubRepositories');
 
   @override
-  Future<void> loadGitHubRepositories() {
+  Future<void> loadGitHubRepositories(bool refreshing) {
     return _$loadGitHubRepositoriesAsyncAction
-        .run(() => super.loadGitHubRepositories());
+        .run(() => super.loadGitHubRepositories(refreshing));
+  }
+
+  final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase');
+
+  @override
+  void setGitHubRepositories(List<GitHubRepo> list) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setGitHubRepositories');
+    try {
+      return super.setGitHubRepositories(list);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

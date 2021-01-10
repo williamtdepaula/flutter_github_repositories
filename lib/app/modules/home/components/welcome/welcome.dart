@@ -4,6 +4,7 @@ class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key('welcomeContainer'),
       margin: EdgeInsets.all(25.0),
       decoration: BoxDecoration(
         color: Colors.white,

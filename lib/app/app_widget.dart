@@ -8,7 +8,6 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       navigatorKey: Modular.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Slidy',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: kBackgroundColorApp,
