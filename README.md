@@ -14,15 +14,15 @@ Este aplicativo tem como objetivo a exibição dos 100 primeiros repositórios d
 * TDD.
 
 ## Bibliotecas utilizadas
-* flutter_modular: Utilizada para modularizar o aplicativo, facilitar injeção de dependências;
-* flutter_mobx e mobx: Utilizados para o gerenciamento do estado;
-* dio: Executar requisições para APIs;
+* flutter_modular: Utilizado para modularizar o aplicativo, além de facilitar injeção de dependências;
+* mobx e flutter_mobx: Utilizados para o gerenciamento do estado;
+* dio: Executar requisições em APIs;
 * dartz: Utilizada para facilitar o tratamento das respostas das APIs, utilizando o Either;
 * cached_network_image: Utilizada para fazer o cache das imagens e melhorar a experiência do usuário;
-* connectivity: Utilizada para a chegagem de conexão;
-* url_launcher: Utilizada para abrir os repositórios no browser;
-* shimmer: Utilizada para implementar as animações de loading de repositórios;
-* fluttertoast: Utilizada para exibir toast caso não seja possível abrir o repositório ou o dispositivo;
+* connectivity: Utilizada para a checar a conexão;
+* url_launcher: Utilizada para abrir o repositório no browser;
+* shimmer: Utilizada para implementar as animações de loading da lista de repositórios;
+* fluttertoast: Utilizada para exibir toast caso não seja possível abrir o repositório no browser ou se o dispositivo estiver sem conexão com a internet;
 
 ## Bibliotecas para testes
 * flutter_test: Executar testes unitários;
@@ -31,7 +31,7 @@ Este aplicativo tem como objetivo a exibição dos 100 primeiros repositórios d
 
 ## Como executar os testes
 Para executar os testes unitários:
- * Entre na pasta test na raiz do projeto
+ * Entre na pasta test localizada na raiz do projeto
  * Abra um arquivo que deseja executar os testes 
  * Clique em "Run"
  
@@ -52,18 +52,18 @@ $ flutter drive --target=test_driver/app.dart
 
 **William Tristão de Paula**  [Profile](https://github.com/williamtdepaula "GitHub Profile")
 
-## Configuration Steps
+## Instalação
 
-Cloning the repository:
+Clone o projeto:
 ```
 $ git clone https://github.com/williamtdepaula/flutter_github_repositories
 ```
 
-Open the project:
+Abra o projeto:
 ```
 $ cd flutter_github_repositories
 ```
 
-Now run the app on your connected device (using terminal):
+Agora inicie o aplicativo no seu emulador ou dispositivo conectado (Usando o terminal):
 ```
 $ flutter run
