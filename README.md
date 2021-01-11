@@ -52,7 +52,7 @@ $ flutter drive --target=test_driver/app.dart
 
 ## O aplicativo
 
-![](preview/preview.gif)
+![](preview/preview_illustrated.gif)
 ![](preview/preview_img_warning.jpeg)
 ![](preview/preview_img_connection.jpeg)
 
