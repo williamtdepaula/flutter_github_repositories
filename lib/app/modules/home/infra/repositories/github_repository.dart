@@ -7,18 +7,19 @@ import 'package:flutter_github_repositories/app/modules/home/infra/repositories/
 import 'package:flutter_github_repositories/app/modules/home/models/github_repo.dart';
 import 'package:flutter_github_repositories/app/modules/home/models/owner.dart';
 import 'package:flutter_github_repositories/app/shared/errors/errors.dart';
-import 'package:flutter_github_repositories/app/shared/utils/helper.dart';
+import 'package:flutter_github_repositories/app/shared/utils/network/network_interface.dart';
 
 class GitHubRepository implements IGitHubRepository {
   IGitHubDatasource gitHubDataSource;
+  INetwork network;
 
-  GitHubRepository({this.gitHubDataSource});
+  GitHubRepository({this.gitHubDataSource, this.network});
 
   @override
   Future<Either<FailureGitHub, List<GitHubRepo>>>
       getGitHubRepositories() async {
     try {
-      bool appIsConnected = await Helper.isConnected();
+      bool appIsConnected = await this.network.isConnected();
 
       if (appIsConnected) {
         Response resRepositories =
@@ -43,9 +44,9 @@ class GitHubRepository implements IGitHubRepository {
 
           return Right(gitHubRepositories);
         } else
-          return Left(ConnectionError());
+          return Left(GitHubRepoError());
       } else {
-        return Left(GitHubRepoError());
+        return Left(ConnectionError());
       }
     } catch (e) {
       return Left(GitHubRepoError());

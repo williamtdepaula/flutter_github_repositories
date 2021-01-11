@@ -55,7 +55,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height,
-      color: Color(0xFFD8D4FF),
+      color: Color(0xFF4D45B3),
     );
   }
 

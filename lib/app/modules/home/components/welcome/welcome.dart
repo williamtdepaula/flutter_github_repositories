@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_repositories/app/shared/utils/constants.dart';
 
 class Welcome extends StatelessWidget {
   @override
@@ -9,13 +10,20 @@ class Welcome extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black45,
+            offset: Offset(0.0, 1.0),
+            blurRadius: 10.0,
+          ),
+        ],
       ),
       padding: EdgeInsets.all(4.0),
       child: Row(
         children: [
           Expanded(
             child: Image.asset(
-              'assets/imgs/work.png',
+              '$BASE_IMAGES_ASSETS_PATH/development.png',
               fit: BoxFit.contain,
             ),
           ),
@@ -34,11 +42,12 @@ class Welcome extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Você pode encontrar uns projetos bem legais aqui ;)',
+                  'Você pode encontrar uns projetos bem legais aqui.',
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 14.0,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
               ],

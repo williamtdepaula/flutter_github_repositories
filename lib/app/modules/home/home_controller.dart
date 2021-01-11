@@ -4,6 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_github_repositories/app/modules/home/infra/repositories/github_repository_interface.dart';
 import 'package:flutter_github_repositories/app/modules/home/models/github_repo.dart';
 import 'package:flutter_github_repositories/app/shared/errors/errors.dart';
+import 'package:flutter_github_repositories/app/shared/utils/network/network_interface.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,8 +17,9 @@ class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
   IGitHubRepository gitHubRepository;
+  INetwork network;
 
-  _HomeControllerBase({this.gitHubRepository}) {
+  _HomeControllerBase({this.gitHubRepository, this.network}) {
     this.loadGitHubRepositories(false);
   }
 
@@ -36,14 +39,14 @@ abstract class _HomeControllerBase with Store {
   //Caso refreshing seja true, não irá alterar a variável loading, pois ela é a flag para exibição do shimmer effect, e com pull to refresh isso não faz sentido
   @action
   Future<void> loadGitHubRepositories(bool refreshing) async {
-    this.warning = GitHubRepoError();
+    this.warning = null;
     if (!refreshing) this.loading = true;
 
     Either<FailureGitHub, List<GitHubRepo>> res =
         await this.gitHubRepository.getGitHubRepositories();
 
     if (res.isRight()) {
-      //this.warning = null;
+      this.warning = null;
       this.gitHubRepositories = res.getOrElse(() => null).asObservable();
     } else {
       this.warning = res.fold(id, null);
@@ -54,12 +57,24 @@ abstract class _HomeControllerBase with Store {
   }
 
   Future<void> openRepository(GitHubRepo gitHubRepo) async {
-    final String url = gitHubRepo.htmlUrl;
+    if (await network.isConnected()) {
+      final String url = gitHubRepo.htmlUrl;
 
-    if (await canLaunch(url)) {
-      await launch(url);
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        Fluttertoast.showToast(
+          msg: 'Não foi possível abrir o repositório!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+        );
+      }
     } else {
-      throw 'Could not launch $url';
+      Fluttertoast.showToast(
+        msg: 'Você não tem conexão com a internet!',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
     }
   }
 }

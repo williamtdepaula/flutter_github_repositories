@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_github_repositories/app/shared/utils/constants.dart';
+import 'package:flutter_github_repositories/app/shared/utils/network/network.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class AppModule extends MainModule {
             BaseOptions(baseUrl: BASE_URL),
           ),
         ),
+        Bind((i) => Network()),
       ];
 
   @override

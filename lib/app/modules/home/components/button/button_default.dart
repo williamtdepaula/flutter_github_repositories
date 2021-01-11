@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class ButtonDefault extends StatelessWidget {
   final String text;
   final Function onPress;
-  final Key key;
 
-  ButtonDefault({@required this.text, @required this.onPress, this.key})
+  ButtonDefault({@required this.text, @required this.onPress, Key key})
       : super(key: key);
 
   @override

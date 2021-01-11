@@ -32,25 +32,27 @@ void main() {
     });
 
     test(
-        'Should show the repositories list from API, but occurs a error should show a warning',
+        'Should show the list of API repositories, but if an error occurs it should show a warning Widget',
         () async {
       if (await isPresent(
         listGitHubRepositories,
-        timeout: Duration(seconds: 30),
+        timeout: Duration(seconds: 10),
       )) {
-        //checando se está mostrando alguma coisa da lista de repositórios
+        //Checando se está mostrando alguma coisa da lista de repositórios
         await driver.waitFor(find.text('grit'));
       } else {
-        print('erro');
-        expect(await isPresent(warning), true);
+        await driver.waitFor(warning);
       }
     });
 
-    test('Should pull to refresh list', () async {
+    test(
+        'Should pull to refresh the list and if an error occurs show a warning Widget',
+        () async {
       if (await isPresent(
         listGitHubRepositories,
-        timeout: Duration(seconds: 30),
+        timeout: Duration(seconds: 10),
       )) {
+        //Pull to refresh
         await driver.scroll(
           scrollListGitHubRepositories,
           0,
@@ -60,42 +62,35 @@ void main() {
 
         bool repositoriesListIsShowing = await isPresent(
           listGitHubRepositories,
-          timeout: Duration(seconds: 30),
+          timeout: Duration(seconds: 10),
         );
-
-        print('repositories exist $repositoriesListIsShowing');
 
         //Se não estiver exibindo mais a lista, deve estar exibindo o Widget de warning
         if (!repositoriesListIsShowing) {
-          expect(await isPresent(warning), true);
+          await driver.waitFor(warning);
         }
       } else {
-        expect(await isPresent(warning), true);
+        await driver.waitFor(warning);
       }
     });
 
     test(
-        'Should show list or warning again when button to try again is pressed',
+        'Should show the list or a warning again, when the button to try again is pressed',
         () async {
       if (await isPresent(warning)) {
-        print('Warning found');
-
         await driver.tap(buttonWarning);
 
-        if (await isPresent(listGitHubRepositories,
-            timeout: Duration(seconds: 30))) {
-          print('List found when had error');
-          expect(await isPresent(find.text('grit')), true);
+        if (await isPresent(
+          listGitHubRepositories,
+          timeout: Duration(seconds: 10),
+        )) {
+          await driver.waitFor(find.text('grit'));
         } else {
           await driver.waitFor(warning);
-
-          print('Warning found when had error and tried to get list again');
-          expect(await isPresent(warning), true);
         }
       } else {
-        print('Im here warning not found');
         //Não está mostrando o warning, então deve estar mostrando a lista
-        expect(await isPresent(listGitHubRepositories), true);
+        await driver.waitFor(listGitHubRepositories);
       }
     });
   });

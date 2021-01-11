@@ -7,7 +7,8 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 final $HomeController = BindInject(
-  (i) => HomeController(gitHubRepository: i<IGitHubRepository>()),
+  (i) => HomeController(
+      gitHubRepository: i<IGitHubRepository>(), network: i<INetwork>()),
   singleton: true,
   lazy: true,
 );
