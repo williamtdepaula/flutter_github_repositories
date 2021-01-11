@@ -4,7 +4,7 @@ Este aplicativo tem como objetivo a exibição dos 100 primeiros repositórios d
 
 # Ícone
 
-De início implementei para o ícone e para a splash screen a logo do GitHub, porém pesquisando sobre, vi que na política do GitHub não é permitido utilizar seus ícones como launcher de um aplicativo, porém não dizia se essa restrição era apenas para uso em produção. Mas por segurança e por questão da logo do GitHub não combinar com o tema do aplicativo, resolvi criar um logo, simples porém que remete ao que o aplicativo propoem e que se encaixe com o tema roxo do aplicativo.
+De início implementei para o ícone e para a splash screen a logo do GitHub, porém pesquisando sobre, vi que na política do GitHub não é permitido utilizar seus ícones como launcher de um aplicativo, porém não dizia se essa restrição era apenas para uso em produção. Mas por segurança e por questão da logo do GitHub não combinar com o tema do aplicativo, resolvi criar um logo, simples, porém que remete ao que o aplicativo propõe e que se encaixe com o tema roxo do aplicativo.
 
 # O aplicativo foi desenvolvido utilizando:
 
