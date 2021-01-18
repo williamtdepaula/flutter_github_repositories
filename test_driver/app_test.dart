@@ -36,7 +36,7 @@ void main() {
         () async {
       if (await isPresent(
         listGitHubRepositories,
-        timeout: Duration(seconds: 10),
+        timeout: Duration(seconds: 5),
       )) {
         //Checando se está mostrando alguma coisa da lista de repositórios
         await driver.waitFor(find.text('grit'));
@@ -50,7 +50,7 @@ void main() {
         () async {
       if (await isPresent(
         listGitHubRepositories,
-        timeout: Duration(seconds: 10),
+        timeout: Duration(seconds: 5),
       )) {
         //Pull to refresh
         await driver.scroll(
@@ -62,7 +62,7 @@ void main() {
 
         bool repositoriesListIsShowing = await isPresent(
           listGitHubRepositories,
-          timeout: Duration(seconds: 10),
+          timeout: Duration(seconds: 5),
         );
 
         //Se não estiver exibindo mais a lista, deve estar exibindo o Widget de warning
@@ -82,7 +82,7 @@ void main() {
 
         if (await isPresent(
           listGitHubRepositories,
-          timeout: Duration(seconds: 10),
+          timeout: Duration(seconds: 5),
         )) {
           await driver.waitFor(find.text('grit'));
         } else {
