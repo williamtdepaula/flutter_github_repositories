@@ -43,7 +43,7 @@ void main() {
       } else {
         await driver.waitFor(warning);
       }
-    }, timeout: Timeout.none);
+    });
 
     test(
         'Should pull to refresh the list and if an error occurs show a warning Widget',
@@ -72,7 +72,7 @@ void main() {
       } else {
         await driver.waitFor(warning);
       }
-    }, timeout: Timeout.none);
+    });
 
     test(
         'Should show the list or a warning again, when the button to try again is pressed',
@@ -92,6 +92,6 @@ void main() {
         //Não está mostrando o warning, então deve estar mostrando a lista
         await driver.waitFor(listGitHubRepositories);
       }
-    }, timeout: Timeout.none);
+    });
   });
 }
