@@ -50,7 +50,7 @@ abstract class _HomeControllerBase with Store {
       this.gitHubRepositories = res.getOrElse(() => null).asObservable();
     } else {
       this.warning = res.fold(id, null);
-      this.gitHubRepositories = [].asObservable();
+      this.gitHubRepositories = <GitHubRepo>[].asObservable();
     }
 
     this.loading = false;
